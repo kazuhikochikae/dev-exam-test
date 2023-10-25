@@ -1,0 +1,25 @@
+<h1>物件登録</h1>
+<%= form_with(model: @rental, local: true) do |form| %>
+  <div class="blog_title">
+    <%= form.label :物件名 %><br>
+    <%= form.text_field :name %>
+  </div>
+  <div class="blog_content">
+    <%= form.label :賃料 %><br>
+    <%= form.text_field :rent %>円
+  </div>
+  <div class="blog_content">
+    <%= form.label :住所 %><br>
+    <%= form.text_field :add %>
+  </div>
+    <div class="blog_content">
+    <%= form.label :築年数 %><br>
+    <%= form.text_field :years %>年
+  </div>
+    <div class="blog_content">
+    <%= form.label :備考 %><br>
+    <%= form.text_area :note %>
+  </div>
+  <%= form.submit "登録する"%>
+<% end %>
+
