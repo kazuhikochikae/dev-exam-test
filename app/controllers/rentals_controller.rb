@@ -1,8 +1,10 @@
 class RentalsController < ApplicationController
   def index
+    @rentals = Rental.all
   end
 
   def show
+    @rental = Rental.find(params[:id])
   end
 
   def new
@@ -10,12 +12,20 @@ class RentalsController < ApplicationController
   end
 
   def edit
+
   end
 
   def create
-    Rental.create(name: params[:rental][:name], rent: params[:rental][:rent],add: params[:rental][:add],years: params[:rental][:years],note: params[:rental][:note])
+    Rental.create(rental_params)
     redirect_to new_rental_path
   end
+
+  private
+
+  def rental_params
+    params.require(:rental).permit(:name,:rent,:add,:years,:note)
+  end
+
 end
 
 
