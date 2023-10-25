@@ -12,13 +12,27 @@ class RentalsController < ApplicationController
   end
 
   def edit
-
+    @rental = Rental.find(params[:id])
   end
 
   def create
-    Rental.create(rental_params)
-    redirect_to new_rental_path
+    @rental = Rental.new(rental_params)
+    if @rental.save
+      redirect_to rentals_path
+    else 
+      render :new
+    end
   end
+
+  def update
+    @rental = Rental.find(params[:id])
+    if @rental.update(rental_params)
+      redirect_to rentals_path
+    else
+      render :edit
+    end
+  end
+
 
   private
 

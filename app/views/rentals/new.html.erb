@@ -1,5 +1,17 @@
 <h1>物件登録</h1>
 <%= form_with(model: @rental, local: true) do |form| %>
+
+ <% if @rental.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @rental.errors.count %>件のエラーがあります。</h2>
+      <ul>
+      <% @rental.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="blog_title">
     <%= form.label :物件名 %><br>
     <%= form.text_field :name %>

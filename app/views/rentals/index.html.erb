@@ -18,6 +18,7 @@
     <td><%= rental.years %></td>
     <td><%= rental.note %></td>
     <td><%= link_to '詳細', rental_path(rental.id) %></td>
+    <td><%= link_to '編集', edit_rental_path(rental.id) %></td>
 
   </tr>
 <% end %>
