@@ -32,6 +32,25 @@
     <%= form.label :備考 %><br>
     <%= form.text_area :note %>
   </div>
+
+<%= form.fields_for :stations do |station| %>
+    <%= "最寄り駅#{station.index + 1}" %>
+    <div class="blog_title">
+      <%= station.label :路線名 %><br>
+      <%= station.text_field :route %>
+    </div>
+    <div class="blog_title">
+      <%= station.label :駅名 %><br>
+      <%= station.text_field :name %>
+    </div>
+    <div class="blog_title">
+      <%= station.label :徒歩分数 %><br>
+      <%= station.text_field :minutes %>分
+    </div>
+  <% end %>
+
   <%= form.submit "登録する"%>
+  <%= link_to 'Back', rentals_path %>
+  
 <% end %>
 

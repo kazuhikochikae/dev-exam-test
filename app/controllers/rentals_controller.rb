@@ -9,10 +9,13 @@ class RentalsController < ApplicationController
 
   def new
     @rental = Rental.new
+    @rental.stations.new
+    @rental.stations.new
   end
 
   def edit
     @rental = Rental.find(params[:id])
+    @rental.stations.build
   end
 
   def create
@@ -26,7 +29,8 @@ class RentalsController < ApplicationController
 
   def update
     @rental = Rental.find(params[:id])
-    if @rental.update(rental_params)
+    
+    if @rental.update(rental_params) 
       redirect_to rentals_path
     else
       render :edit
@@ -35,6 +39,10 @@ class RentalsController < ApplicationController
 
   def destroy
     @rental = Rental.find(params[:id])
+    @rental.stations.each do |station|
+      station.destroy
+    end
+
     @rental.destroy
     redirect_to rentals_path
   end
@@ -43,8 +51,10 @@ class RentalsController < ApplicationController
   private
 
   def rental_params
-    params.require(:rental).permit(:name,:rent,:add,:years,:note)
+    params.require(:rental).permit(:name,:rent,:add,:years,:note, stations_attributes: [:id, :route, :name, :minutes])
   end
+
+
 
 end
 
